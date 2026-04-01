@@ -20,7 +20,7 @@ const yields = new YieldTracker();
 const markets = new MarketPriceMonitor();
 
 // Seed demo data
-function seedData() {
+function if (!env.FARM_KV.get("seeded")) { seedData(env); } {
   crops.add({ name: "Corn", variety: "Pioneer P1197", acreage: 320, plantingDate: "2026-04-15", status: "planted", fieldId: "north-40" });
   crops.add({ name: "Soybeans", variety: "Asgrow AG38X6", acreage: 240, plantingDate: "2026-05-01", status: "planned", fieldId: "east-80" });
   crops.add({ name: "Wheat", variety: "Syngroup Sy-Wheat", acreage: 160, plantingDate: "2025-10-10", status: "growing", fieldId: "south-160" });
@@ -50,7 +50,7 @@ function seedData() {
   markets.add({ commodity: "Milk", price: 18.90, unit: "USD/cwt", date: "2026-03-31", change: -0.35, source: "CME" });
 }
 
-seedData();
+if (!env.FARM_KV.get("seeded")) { seedData(env); };
 
 function json(data: unknown, status = 200): Response {
   return new Response(JSON.stringify(data), {
