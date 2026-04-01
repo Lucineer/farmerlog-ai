@@ -1,0 +1,9 @@
+name = "farmerlog-ai"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+[vars]
+DEEPSEEK_API_KEY = ""
+
+[site]
+bucket = "./public"
