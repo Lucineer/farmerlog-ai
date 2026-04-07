@@ -1,59 +1,41 @@
 # FarmerLog AI
 
-You keep farm records, but spreadsheets forget context and commercial software locks you out. This is an alternative: a single-file application that logs crops, weather impacts, and harvests. It runs on your own infrastructure, connects to your own AI keys, and follows the open Cocapn Fleet protocol.
+You log field tasks with dirt on your hands. This is the simple tool for that. Log a planting, and you can optionally ask an AI for companion planting suggestions based on your notes. It runs on Cloudflare Workers with zero dependencies.
 
-**Live instance:** https://farmerlog-ai.casey-digennaro.workers.dev
+## Why
+Most farm software imposes a complex workflow, locks your data, or charges a recurring fee. This was built for daily use on a small vegetable farm. There is no product roadmap. It is a logging tool that you control.
 
----
+## How It Works
+1.  You fork this repository and deploy it to your own Cloudflare Worker.
+2.  You add your planting logs, task notes, and harvest records. All data stays in your Worker's KV storage.
+3.  If you add an AI API key via a Cloudflare Secret, you can ask for companion planting advice. Your farm data is not sent to any AI service unless you explicitly use the query box.
 
-### Why it exists
-Farm management software is often built for large-scale operations. This provides a practical, modifiable tool for smaller-scale growers. You retain all data and control. Modify it for your specific fields, livestock, or seasons.
+The entire application is a single source file under 300 lines that you can review.
 
----
+## Start
+1.  **Fork** this repository.
+2.  Run `npx wrangler deploy` to deploy to your Cloudflare account.
+3.  To enable the AI companion, set your API key as a secret: `npx wrangler secret put AI_API_KEY`.
 
-## How it works
-- **No accounts or telemetry.** It operates anonymously.
-- **Fork-first.** Deploy your own instance. The entire application is one source file.
-- **Zero dependencies.** Runs on Cloudflare Workers with sub-100ms cold starts.
-- **Fleet-native.** Works standalone or interoperates with other Cocapn vessels.
+A working dashboard will be ready in under two minutes.
 
----
+Live example: [farmerlog-ai.casey-digennaro.workers.dev](https://farmerlog-ai.casey-digennaro.workers.dev)
 
-## Features
-- **Crop & Livestock Logging** – Record plantings, herds, field rotations, and daily tasks.
-- **Weather Impact Notes** – Log weather events and their observed effects on your fields.
-- **Yield History** – Track harvest data across seasons to identify patterns.
-- **Optional AI Chat** – Use your own LLM API key (DeepSeek, Moonshot, DeepInfra, or SiliconFlow).
-- **Touch-Optimized UI** – A clean interface usable on a phone in the field.
-- **Fleet Protocol** – Implements standard health, setup, and API endpoints.
+## What You Can Do
+*   Log plantings, field tasks, and harvest yields.
+*   Add observational notes on weather and soil conditions.
+*   Query an optional AI assistant (supports DeepSeek, Moonshot, and others) for companion planting ideas.
+*   Use the touch-optimized interface on a phone in the field.
+*   Your data persists in your own Cloudflare KV store.
 
-**One limitation:** It requires an internet connection to run; offline sync is not included.
+**A specific limitation:** This is a single-page web app. Your browser tab must stay open to retain unsaved edits; there is no offline caching or automatic background sync.
 
----
-
-## Quick Start
-1. **Fork** this repository.
-2. **Deploy** with one command:  
-   `npx wrangler deploy`
-3. **Optionally, add an AI key** via Cloudflare Secrets (e.g., `DEEPSEEK_API_KEY`) to enable the chat assistant.
-
-Visit your deployed worker’s URL. The dashboard is immediately functional.
-
----
-
-## Contributing
-Fork the repository, adapt it for your needs, and submit a pull request if you wish to contribute improvements. Follow the Cocapn Fleet protocol to maintain compatibility.
-
----
+## Building On It
+Fork and adapt it for your own farm, crops, and climate. If you make a generally useful improvement, consider a pull request. Please maintain compatibility with the Cocapn Fleet protocol.
 
 ## License
 MIT License
 
-Superinstance & Lucineer (DiGennaro et al.)
+Superinstance and Lucineer (DiGennaro et al.)
 
----
-
-<div>
-  <a href="https://the-fleet.casey-digennaro.workers.dev">Fleet</a> · 
-  <a href="https://cocapn.ai">Cocapn</a>
-</div>
+<div style="text-align:center;padding:16px;color:#64748b;font-size:.8rem"><a href="https://the-fleet.casey-digennaro.workers.dev" style="color:#64748b">The Fleet</a> &middot; <a href="https://cocapn.ai" style="color:#64748b">Cocapn</a></div>
