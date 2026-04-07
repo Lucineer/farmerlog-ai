@@ -1,52 +1,59 @@
 # FarmerLog AI
 
-You farm dirt, not spreadsheets. This is an AI companion that stays out of your way while you focus on what matters.
+You keep farm records, but spreadsheets forget context and commercial software locks you out. This is an alternative: a single-file application that logs crops, weather impacts, and harvests. It runs on your own infrastructure, connects to your own AI keys, and follows the open Cocapn Fleet protocol.
 
-This is an independent vessel built for the Cocapn Fleet, designed for farmers, not agricultural software sales teams.
-
-## Why this exists
-Most farm software locks your data behind subscriptions, adds features you don't need, and requires a constant internet connection. This tool runs on edge infrastructure, puts you in control, and focuses on the tasks you actually need in the field. This core version has no subscriptions.
-
-## Try It Now
-Live demo: https://farmerlog-ai.casey-digennaro.workers.dev
-
-No signup required. The public demo does not permanently store your data.
-
-## What It Does
-- **Crop Planning & History**: Log plantings, varieties, acreage, and field locations.
-- **Weather Impact Logging**: Record frost, rain, and heat events to correlate with yields.
-- **Yield Analysis**: Enter harvest data to get plain-language observations.
-- **AI Chat**: Ask questions about your farm's history in plain English. Bring your own LLM API key; nothing is sent to third parties by default.
-- **Field Operations Log**: Keep searchable notes for every field activity.
-- **Commodity Price Tracking**: Monitor local market prices for your crops.
-
-## How It Works
-- Runs on your own Cloudflare Worker. You control the deployment and data.
-- Zero runtime dependencies. Deploy it, and it will keep working.
-- Follows a fork-first philosophy. Adapt it for your specific crops, livestock, or climate.
-- Built for poor cell service; logic runs on the nearest edge node.
-
-**One Honest Limitation**: While the app works with intermittent connections, the initial setup and configuration require an internet connection.
-
-## Quick Start
-1.  Fork this repository to your GitHub account.
-2.  Deploy it to Cloudflare Workers: `npx wrangler deploy`.
-3.  For AI features, add your preferred LLM API key via Cloudflare's Secrets. No key is needed for basic logging.
-
-## Bring Your Own AI
-Configure support for DeepSeek, Moonshot, DeepInfra, or SiliconFlow with a single environment variable. Visit `/setup` on your deployed instance for instructions.
-
-## Architecture
-FarmerLog AI implements the Cocapn Fleet protocol. All state is stored in your own Cloudflare KV namespace. There are no external service dependencies.
-
-## Contributing
-This project follows fork-first development. Fork the repository, build what you need for your operation, and open a pull request if you wish to contribute improvements back.
+**Live instance:** https://farmerlog-ai.casey-digennaro.workers.dev
 
 ---
 
-MIT License — Superinstance & Lucineer (DiGennaro et al.)
+### Why it exists
+Farm management software is often built for large-scale operations. This provides a practical, modifiable tool for smaller-scale growers. You retain all data and control. Modify it for your specific fields, livestock, or seasons.
+
+---
+
+## How it works
+- **No accounts or telemetry.** It operates anonymously.
+- **Fork-first.** Deploy your own instance. The entire application is one source file.
+- **Zero dependencies.** Runs on Cloudflare Workers with sub-100ms cold starts.
+- **Fleet-native.** Works standalone or interoperates with other Cocapn vessels.
+
+---
+
+## Features
+- **Crop & Livestock Logging** – Record plantings, herds, field rotations, and daily tasks.
+- **Weather Impact Notes** – Log weather events and their observed effects on your fields.
+- **Yield History** – Track harvest data across seasons to identify patterns.
+- **Optional AI Chat** – Use your own LLM API key (DeepSeek, Moonshot, DeepInfra, or SiliconFlow).
+- **Touch-Optimized UI** – A clean interface usable on a phone in the field.
+- **Fleet Protocol** – Implements standard health, setup, and API endpoints.
+
+**One limitation:** It requires an internet connection to run; offline sync is not included.
+
+---
+
+## Quick Start
+1. **Fork** this repository.
+2. **Deploy** with one command:  
+   `npx wrangler deploy`
+3. **Optionally, add an AI key** via Cloudflare Secrets (e.g., `DEEPSEEK_API_KEY`) to enable the chat assistant.
+
+Visit your deployed worker’s URL. The dashboard is immediately functional.
+
+---
+
+## Contributing
+Fork the repository, adapt it for your needs, and submit a pull request if you wish to contribute improvements. Follow the Cocapn Fleet protocol to maintain compatibility.
+
+---
+
+## License
+MIT License
+
+Superinstance & Lucineer (DiGennaro et al.)
+
+---
 
 <div>
-  <a href="https://the-fleet.casey-digennaro.workers.dev">Cocapn Fleet</a> · 
+  <a href="https://the-fleet.casey-digennaro.workers.dev">Fleet</a> · 
   <a href="https://cocapn.ai">Cocapn</a>
 </div>
